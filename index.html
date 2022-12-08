@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Todo List</title>
+    <style>
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Todo List</h1>
+    <button onclick="addTodo()">Add Todo</button>
+    <input type="text" id="todoInput" placeholder="Enter a todo item">
+    <table>
+        <tr>
+            <th>Todo Item</th>
+            <th>Remove Todo</th>
+        </tr>
+    </table>
+    <script>
+        function addTodo() {
+            // Get the input text from the text box
+            var todoText = document.getElementById("todoInput").value;
+
+            // Create a new table row
+            var newRow = document.createElement("tr");
+
+            // Create a new table cell with the input text as its content
+            var newCell1 = document.createElement("td");
+            newCell1.innerHTML = todoText;
+
+            // Create a new "Remove Todo" button and set its onclick event
+            var newCell2 = document.createElement("td");
+            var removeButton = document.createElement("button");
+            removeButton.innerHTML = "Remove Todo";
+            removeButton.onclick = function () {
+                // When the button is clicked, remove the row from the table
+                newRow.remove();
+            };
+
+            // Append the button to the second cell
+            newCell2.appendChild(removeButton);
+
+            // Append the new cells to the new row
+            newRow.appendChild(newCell1);
+            newRow.appendChild(newCell2);
+
+            // Find the table in the page and append the new row to it
+            var todoTable = document.getElementsByTagName("table")[0];
+            todoTable.appendChild(newRow);
+
+            // Clear the input text in the text box
+            document.getElementById("todoInput").value = "";
+        }
+    </script>
+</body>
+
+</html>
